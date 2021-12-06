@@ -4,11 +4,15 @@ import java.util.*;
 public class StudentList {
 	public static void main(String[] args) throws  IOException {
 
-//		Check arguments
+		//Check arguments
 		if(args.length!=1) {
 			showMessage();
+
+			//Exit early.
 			return;
 		}
+
+		//Containg the file return from the loadStudents method.
 		String studentsFile=loadStudents(Constants.studentFile);
 		if(args[0].equals(Constants.showallStudents)) {
 			System.out.println("Loading data ...");
@@ -51,12 +55,12 @@ public class StudentList {
 			System.out.println("Loading data ...");
 			char allCharacter[] = studentsFile.toCharArray();
 			boolean in_word = false;
-			int count=0;
+			int noOfstudents=0;
 			for(char character:allCharacter) {
 				if(character ==' ')
 				{
 					if (!in_word) {
-						count++;
+						noOfstudents++;
 						in_word =true;
 					}
 					else {
@@ -64,20 +68,26 @@ public class StudentList {
 					}
 				}
 			}
-			System.out.println(count +" word(s) found ");
+			System.out.println(noOfstudents +" word(s) found ");
 			System.out.println("Data Loaded.");				
 		}
 		else {
 			showMessage();
 		}
 	}
+
+	//Method for showing message when invalid argument occurs.
 	static void showMessage() {
 		System.out.println("No argument or Invalid argument.");
 	}
+
+	//Reads student file from the given list and return it in a line.
 	static String loadStudents(String fileName) throws IOException{
 		BufferedReader fileStream = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
 		return fileStream.readLine();
 	}
+
+	//Writes given string of data to the given list.
 	static void updateStudetntList(String addString, String fileName) throws IOException {
 		BufferedWriter writerStream = new BufferedWriter(new FileWriter(fileName, true));
 		writerStream.write(", " + addString);

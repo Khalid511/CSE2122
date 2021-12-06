@@ -5,6 +5,10 @@ public class StudentList {
 	public static void main(String[] args) {
 
 //		Check arguments
+		if(args.length!=1) {
+			showMessage();
+			return;
+		}
 		if(args[0].equals("a")) {
 			System.out.println("Loading data ...");			
 			try {
@@ -83,5 +87,11 @@ public class StudentList {
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");				
 		}
+		else {
+			showMessage();
+		}
+	}
+	static void showMessage() {
+		System.out.println("No argument or Invalid argument.");
 	}
 }

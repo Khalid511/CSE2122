@@ -9,33 +9,33 @@ public class StudentList {
 			showMessage();
 			return;
 		}
-		String studentsFile=loadStudents("students.txt");
-		if(args[0].equals("a")) {
+		String studentsFile=loadStudents(Constants.studentFile);
+		if(args[0].equals(Constants.showallStudents)) {
 			System.out.println("Loading data ...");
-			String students[] = studentsFile.split(", ");
+			String students[] = studentsFile.split(Constants.splitSign);
 			for(String student : students) {
 				System.out.println(student);
 			}
 			System.out.println("Data Loaded.");
 		}
-		else if(args[0].equals("r")) {
+		else if(args[0].equals(Constants.showrandomStudent)) {
 			System.out.println("Loading data ...");
-			String students[] = studentsFile.split(", ");
+			String students[] = studentsFile.split(Constants.splitSign);
 			Random arandomObject = new Random();
 			int randomNumber = arandomObject.nextInt(students.length);
 			System.out.println(students[randomNumber]);
 			System.out.println("Data Loaded.");			
 		}
-		else if(args[0].contains("+")){
+		else if(args[0].contains(Constants.addStudent)){
 			System.out.println("Loading data ...");
 			String addString = args[0].substring(1);
 			updateStudetntList(addString, "students.txt");
 			System.out.println("Data Loaded.");	
 		}
-		else if(args[0].contains("?")) 
+		else if(args[0].contains(Constants.searchStudent))
 		{
 			System.out.println("Loading data ...");
-			String students[] = studentsFile.split(", ");
+			String students[] = studentsFile.split(Constants.splitSign);
 			boolean done = false;
 			String searchString = args[0].substring(1);
 			for(int idx = 0; idx<students.length && !done; idx++) {
@@ -46,7 +46,7 @@ public class StudentList {
 			}
 			System.out.println("Data Loaded.");				
 		}
-		else if(args[0].contains("c")) 
+		else if(args[0].contains(Constants.countStudent))
 		{
 			System.out.println("Loading data ...");
 			char allCharacter[] = studentsFile.toCharArray();
